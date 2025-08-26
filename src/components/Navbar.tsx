@@ -1,13 +1,15 @@
+import barsIcon from "../assets/icons/barsIcon.svg";
+
 const Navbar = () => {
   return (
-    <header>
-      <div className="flex justify-between max-w-7xl m-auto py-3 items-center">
+    <header className="flex fixed w-full justify-between items-center p-4 z-10">
+      <section className="flex items-center gap-7">
         <div>
-          <p className="font-bold text-blue-500 text-2xl">CittLearn</p>
+          <p className="text-white text-2xl font-bold">CITT Learn</p>
         </div>
 
-        <nav className="flex flex-wrap basis-0">
-          <ul className="flex gap-5">
+        <nav>
+          <ul className="hidden">
             <li>
               <a href="#">Inicio</a>
             </li>
@@ -15,20 +17,22 @@ const Navbar = () => {
               <a href="#">Tracks</a>
             </li>
             <li>
-              <a href="#">Soporte</a>
+              <a href="#">Conoce Más</a>
             </li>
             <li>
-              <a href="#">Nosotros</a>
+              <a href="#">Soporte</a>
             </li>
           </ul>
         </nav>
+      </section>
 
-        <div className="flex flex-wrap">
-          <button className="bg-blue-500 text-white px-3 py-2 rounded-lg">
-            Iniciar Sesión
-          </button>
-        </div>
-      </div>
+      <section className="hidden">
+        <button>Iniciar Sesión</button>
+      </section>
+
+      <section>
+        <img className="w-12 h-12" src={barsIcon} />
+      </section>
     </header>
   );
 };

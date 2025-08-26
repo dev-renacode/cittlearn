@@ -1,24 +1,48 @@
+import heroImg from "../assets/images/hero.webp";
+import logoDuoc from "../assets/images/logoduoc.svg";
+
 const Hero = () => {
   return (
-    <section>
-      <div className="flex flex-col items-center pt-20 space-y-3">
-        <h1 className="text-5xl font-bold">Unete al CITT 2025</h1>
-        <h2 className="text-3xl font-medium text-blue">
+    <section
+      className="relative flex flex-col justify-center bg-cover bg-center bg-no-repeat min-h-[80vh] rounded-b-[55px] overflow-hidden"
+      style={{ backgroundImage: `url(${heroImg})` }}
+    >
+      <div className="absolute inset-0 backdrop-blur-sm bg-black/40 z-0 rounded-b-[55px] grayscale-100" />
+      <div className="relative z-10 text-white px-4 text-pretty space-y-1.5">
+        <h1 className="text-5xl font-bold">Bienvenido a CITT Learn</h1>
+        <h2 className="text-2xl font-semibold">
           ¡Aprende nuevas experiencias junto a profesionales!
         </h2>
-        <p className="max-w-5xl text-pretty text-center">
-          Creado en 2010 por la Escuela de Informática y Telecomunicaciones de
-          <strong> DuocUC</strong>, el CITT impulsa la innovación y la
-          colaboración con la industria y la sociedad,{" "}
-          <strong>
-            fomentando espacios abiertos para el desarrollo tecnológico y el
-            aprendizaje conjunto
-          </strong>
-          .
+        <p className="text-lg">
+          Fundado en <strong>2010</strong> por la{" "}
+          <strong>Escuela de Informática y Telecomunicaciones de DuocUC</strong>
+          , el <strong>CITT</strong> promueve la <strong>innovación</strong>, la{" "}
+          <strong>colaboración con la industria</strong> y espacios abiertos
+          para el <strong>desarrollo tecnológico</strong> y el{" "}
+          <strong>aprendizaje conjunto</strong>.
         </p>
-        <button className="bg-indigo-500 text-white px-5 py-2 text-xl rounded-lg">
-          Aprende
-        </button>
+
+        <div className="pt-4 space-x-3">
+          <button>
+            <a
+              href="#tracks"
+              className="bg-purple-500 px-5 py-2 rounded-xl text-lg font-semibold text-white hover:bg-purple-600 transition-colors"
+            >
+              Explorar Tracks
+            </a>
+          </button>
+          <button>
+            <a
+              href="#conocemas"
+              className="border-3 border-purple-500 px-5 py-2 rounded-xl text-lg font-medium"
+            >
+              Conoce Más
+            </a>
+          </button>
+        </div>
+      </div>
+      <div className="absolute bottom-16 left-6 z-10 items-end flex">
+        <img className="w-40" src={logoDuoc} alt="" />
       </div>
     </section>
   );
