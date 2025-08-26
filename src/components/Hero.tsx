@@ -4,16 +4,16 @@ import logoDuoc from "../assets/images/logoduoc.svg";
 const Hero = () => {
   return (
     <section
-      className="relative flex flex-col justify-center bg-cover bg-center bg-no-repeat min-h-[80vh] rounded-b-[55px] overflow-hidden"
+      className="relative flex flex-col justify-center bg-cover bg-center bg-no-repeat min-h-[80vh] rounded-b-[50px] overflow-hidden"
       style={{ backgroundImage: `url(${heroImg})` }}
     >
       <div className="absolute inset-0 backdrop-blur-sm bg-black/40 z-0 rounded-b-[55px] grayscale-100" />
-      <div className="relative z-10 text-white px-4 text-pretty space-y-1.5">
+      <div className="relative z-10 text-white px-4 text-pretty">
         <h1 className="text-5xl font-bold">Bienvenido a CITT Learn</h1>
-        <h2 className="text-2xl font-semibold">
+        <h2 className="text-2xl font-semibold pt-1">
           ¡Aprende nuevas experiencias junto a profesionales!
         </h2>
-        <p className="text-lg">
+        <p className="text-lg pt-4">
           Fundado en <strong>2010</strong> por la{" "}
           <strong>Escuela de Informática y Telecomunicaciones de DuocUC</strong>
           , el <strong>CITT</strong> promueve la <strong>innovación</strong>, la{" "}
