@@ -18,7 +18,7 @@ const Footer = () => {
         </ul>
       </nav>
       <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700 mx-5" />
-      <div className="text-white w-full flex flex-col items-center">
+      <div className="text-white w-full flex flex-col items-center pb-5">
         <h4 className="text-5xl font-extrabold pb-2">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
             2025

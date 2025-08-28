@@ -3,6 +3,7 @@ import Hero from "./components/Hero.tsx";
 import Navbar from "./components/Navbar.tsx";
 import Proyectos from "./components/Proyectos.tsx";
 import SobreCittLearn from "./components/SobreCittLearn.tsx";
+import Tracks from "./components/Tracks.tsx";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <SobreCittLearn />
       <Proyectos />
+      <Tracks />
       <Footer />
     </>
   );
