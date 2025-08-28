@@ -7,9 +7,12 @@ import ProyectoItem from "./ProyectoItem.tsx";
 const Proyectos = () => {
   return (
     <section className="flex flex-col px-4 pt-16">
-      <h2 className="text-4xl font-bold pb-7 text-center">
+      <h2 className="text-4xl font-bold pb-4 text-center">
         Proyectos del CITT
       </h2>
+      <p className="text-center pb-5">
+        Estos son algúnos de los proyectos y eventos que se han echo en el CITT
+      </p>
       <article className="space-y-5">
         <ProyectoItem
           img={project1}
