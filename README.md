@@ -1,69 +1,18 @@
-# React + TypeScript + Vite
+ # CITT Learn | Proyecto track de Fullstack
+### ¿En que consiste?
+CITT Learn consiste en una página web fullstack, la cual tendrá como objetivo fomentar la colaboración entre los alumnos del CITT, y también ayudarlos en su proceso de aprendizaje para el mundo profesional.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ¿Que integraremos?
+Tenemos muchas ideas y también vamos creando más en lo que pasa el desarrollo del proyecto.
 
-Currently, two official plugins are available:
+- Página web accesible y responsiva
+- Página principal en la que se verán recomendaciones de cursos, noticias, tips, etc. respectivos a cada track del CITT.
+- Sistema de autenticación completamente cifrado y seguro con el correo institucional de DuocUC y una selección de track en la página de registro.
+- Sección de foro para cada track, en la cual se podrán hacer preguntas y así mismo responder a otras para fomentar la colaboración.
+- Entre muchas cosas más...
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologías
+- **Frontend**: HTML, CSS, Javascript, React.js (Typescript) y TailwindCSS.
+- **Backend**: Express, MongoDB (aún en revisión) y Node.js
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*Proyecto desarrollado por Renato Herrera alumno de ingeniería en informática DuocUC*
