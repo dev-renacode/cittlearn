@@ -35,7 +35,7 @@ const Navbar = () => {
       >
         <section className="flex items-center gap-7">
           <div>
-            <p className="text-white text-2xl font-bold">CITT Learn</p>
+            <a href="#" className="text-white text-2xl font-bold">CITT Learn</a>
           </div>
 
           <nav>
@@ -44,13 +44,13 @@ const Navbar = () => {
                 <a href="#">Inicio</a>
               </li>
               <li>
-                <a href="#">Conoce Más</a>
+                <a href="#nosotros">Nosotros</a>
               </li>
               <li>
-                <a href="#">Proyectos</a>
+                <a href="#proyectos">Proyectos</a>
               </li>
               <li>
-                <a href="#">Tracks</a>
+                <a href="#tracks">Tracks</a>
               </li>
             </ul>
           </nav>
@@ -60,7 +60,7 @@ const Navbar = () => {
           <button>Iniciar Sesión</button>
         </section>
 
-        <section>
+        <section className="flex items-center">
           <button onClick={toggleMenu}>
             <img className="w-12 h-12" src={barsIcon} alt="Menu" />
           </button>
@@ -103,29 +103,29 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#nosotros"
                   className="text-gray-800 hover:text-blue-600 text-lg font-medium block py-2 transition-colors duration-200"
                   onClick={closeMenu}
                 >
-                  Conoce Más
+                  Nosotros
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  className="text-gray-800 hover:text-blue-600 text-lg font-medium block py-2 transition-colors duration-200"
-                  onClick={closeMenu}
-                >
-                  Tracks
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                  href="#proyectos"
                   className="text-gray-800 hover:text-blue-600 text-lg font-medium block py-2 transition-colors duration-200"
                   onClick={closeMenu}
                 >
                   Proyectos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#tracks"
+                  className="text-gray-800 hover:text-blue-600 text-lg font-medium block py-2 transition-colors duration-200"
+                  onClick={closeMenu}
+                >
+                  Tracks
                 </a>
               </li>
             </ul>

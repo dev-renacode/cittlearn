@@ -33,7 +33,7 @@ const Hero = () => {
           </button>
           <button>
             <a
-              href="#conocemas"
+              href="#nosotros"
               className="border-3 border-purple-500 px-5 py-2 rounded-xl text-lg font-medium"
             >
               Conoce Más

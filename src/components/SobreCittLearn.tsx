@@ -1,6 +1,6 @@
 const SobreCittLearn = () => {
   return (
-    <section className="mt-20 px-5">
+    <section id="nosotros" className="mt-20 px-5 scroll-mt-20">
       <h2 className="font-bold text-4xl pb-2">Sobre CITT Learn</h2>
       <p className="pb-5">Aquí te contaremos como surgió nuestro proyecto.</p>
       <article className="space-y-2 text-pretty">
@@ -17,7 +17,7 @@ const SobreCittLearn = () => {
           dudas, compartir información y facilitar la comunicación entre los
           usuarios.
         </p>
-        <p>
+        <p className="italic">
           CITT Learn es la herramienta que impulsa el aprendizaje y la
           colaboración dentro del Centro.
         </p>

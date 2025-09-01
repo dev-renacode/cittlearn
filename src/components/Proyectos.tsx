@@ -6,7 +6,7 @@ import ProyectoItem from "./ProyectoItem.tsx";
 
 const Proyectos = () => {
   return (
-    <section className="flex flex-col px-4 pt-16">
+    <section id="proyectos" className="flex bg-black text-white flex-col px-4 py-16 mt-20 scroll-mt-20">
       <h2 className="text-4xl font-bold pb-2">Proyectos del CITT</h2>
       <p className="pb-5">
         Estos son algúnos de los proyectos y eventos que se han echo en el CITT
