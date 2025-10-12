@@ -8,3 +8,8 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+@theme {
+  --color-primary: #0a76be;
+  --color-secondary: #0f89d9;
+}
