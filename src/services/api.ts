@@ -9,6 +9,17 @@ export interface ApiResponse<T = unknown> {
   data?: T;
 }
 
+export interface Track {
+  _id: string;
+  name: string;
+  description: string;
+  color: string;
+  icon: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface User {
   _id: string;
   name: string;
@@ -18,6 +29,7 @@ export interface User {
   emailVerified: boolean;
   lastLogin: string | null;
   avatar?: string;
+  track?: Track;
   createdAt: string;
   updatedAt: string;
 }
@@ -129,6 +141,7 @@ export const authService = {
     name: string;
     email: string;
     password: string;
+    track: string;
   }): Promise<ApiResponse<RegisterResponse>> => {
     const response = await api.post("/api/auth/register", userData);
     return response.data;
@@ -191,6 +204,17 @@ export const authService = {
   // Eliminar avatar
   deleteAvatar: async (): Promise<ApiResponse> => {
     const response = await api.delete("/api/auth/avatar");
+    return response.data;
+  },
+
+  // Obtener tracks disponibles
+  getTracks: async (): Promise<ApiResponse<Track[]>> => {
+    const response = await api.get("/api/auth/tracks", {
+      headers: {
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+      },
+    });
     return response.data;
   },
 };

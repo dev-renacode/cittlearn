@@ -8,7 +8,12 @@ export interface AuthContextType {
   isLoading: boolean;
   error: string | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  register: (
+    name: string,
+    email: string,
+    password: string,
+    track: string
+  ) => Promise<void>;
   logout: () => Promise<void>;
   clearError: () => void;
   refreshUser: () => Promise<void>;
@@ -88,12 +93,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     [updateUser, handleApiError]
   );
   const register = useCallback(
-    async (name: string, email: string, password: string) => {
+    async (name: string, email: string, password: string, track: string) => {
       try {
         setError(null);
         setIsLoading(true);
 
-        const response = await authService.register({ name, email, password });
+        console.log("🔗 Enviando a la API:", {
+          name,
+          email,
+          password: "***",
+          track,
+        });
+
+        const response = await authService.register({
+          name,
+          email,
+          password,
+          track,
+        });
 
         if (response.success && response.data) {
           const { user: userData, accessToken, refreshToken } = response.data;

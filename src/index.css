@@ -12,4 +12,5 @@ body {
 @theme {
   --color-primary: #0a76be;
   --color-secondary: #0f89d9;
+  --color-tertiary: #212121;
 }

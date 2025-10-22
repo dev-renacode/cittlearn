@@ -6,10 +6,15 @@ const Hero = () => {
   const { user } = useAuth();
 
   return (
-    <section
-      className="relative flex flex-col justify-center bg-cover bg-center bg-no-repeat min-h-[80vh] rounded-b-[50px] overflow-hidden"
-      style={{ backgroundImage: `url(${heroImg})` }}
-    >
+    <section className="relative flex flex-col justify-center min-h-[80vh] rounded-b-[50px] overflow-hidden">
+      {/* Imagen LCP optimizada */}
+      <img
+        src={heroImg}
+        alt="CITT Learn - Centro de Innovación Tecnológica"
+        className="absolute inset-0 w-full h-full object-cover"
+        fetchPriority="high"
+        loading="eager"
+      />
       <div className="md:max-w-7xl md:mx-auto">
         <div className="absolute inset-0 backdrop-blur-sm bg-black/40 z-0 rounded-b-[55px] grayscale-100" />
         <div className="relative z-10 text-white px-4 md:px-0 text-pretty">

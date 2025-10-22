@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Feed from "./pages/Feed";
 
 function App() {
   return (
@@ -47,6 +48,16 @@ function App() {
               <ProtectedRoute requireAuth={true}>
                 <Layout>
                   <Profile />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/feed/*"
+            element={
+              <ProtectedRoute requireAuth={true}>
+                <Layout>
+                  <Feed />
                 </Layout>
               </ProtectedRoute>
             }

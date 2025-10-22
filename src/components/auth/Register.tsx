@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import Button from "../ui/Button";
 import Card from "../ui/Card";
+import TrackSelector from "../ui/TrackSelector";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    track: "",
   });
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
@@ -51,6 +53,10 @@ const Register = () => {
       errors.push("Las contraseñas no coinciden");
     }
 
+    if (!formData.track) {
+      errors.push("Debes seleccionar un track");
+    }
+
     if (!acceptTerms) {
       errors.push("Debes aceptar los términos y condiciones");
     }
@@ -67,7 +73,19 @@ const Register = () => {
     }
 
     try {
-      await register(formData.name, formData.email, formData.password);
+      console.log("📤 Datos del formulario:", {
+        name: formData.name,
+        email: formData.email,
+        password: "***",
+        track: formData.track,
+      });
+
+      await register(
+        formData.name,
+        formData.email,
+        formData.password,
+        formData.track
+      );
 
       const from = location.state?.from?.pathname || "/";
       navigate(from, { replace: true });
@@ -161,6 +179,24 @@ const Register = () => {
               placeholder="••••••••"
               required
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Track de Especialización
+            </label>
+            <TrackSelector
+              value={formData.track}
+              onChange={(trackId) =>
+                setFormData({ ...formData, track: trackId })
+              }
+              placeholder="Selecciona tu área de especialización"
+              disabled={isLoading}
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              Elige el track que mejor se adapte a tus intereses y objetivos
+              profesionales
+            </p>
           </div>
 
           <div className="flex items-center">

@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <footer className="bg-black space-y-3 mt-20">
+    <footer className="bg-tertiary space-y-3 mt-20 pt-10">
       <div className="md:max-w-7xl md:mx-auto">
-        <nav className="px-5 pt-2">
+        <nav className="px-5 pt-2 pb-10">
           <ul className="text-white text-lg">
             <li>
               <a href="">Nosotros</a>

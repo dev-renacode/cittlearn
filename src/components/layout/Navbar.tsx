@@ -13,12 +13,13 @@ const Navbar = () => {
   const { avatarKey } = useAvatarUpdate();
   const location = useLocation();
 
-  // Detectar si estamos en la página de perfil
+  // Detectar si estamos en la página de perfil o feed
   const isProfilePage = location.pathname === "/profile";
+  const isFeedPage = location.pathname.startsWith("/feed");
 
   useEffect(() => {
     // Solo aplicar efecto de scroll si NO estamos en la página de perfil
-    if (isProfilePage) {
+    if (isProfilePage || isFeedPage) {
       setIsScrolled(false);
       return;
     }
@@ -33,7 +34,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isProfilePage]);
+  }, [isProfilePage, isFeedPage]);
 
   // Escuchar cambios en el avatar del usuario
   useEffect(() => {
@@ -61,10 +62,10 @@ const Navbar = () => {
     <>
       <header
         className={`flex fixed w-full justify-between items-center p-4 md:px-0 z-20 transition-all duration-100 ${
-          isProfilePage
-            ? "bg-black"
+          isProfilePage || isFeedPage
+            ? "bg-tertiary"
             : isScrolled
-            ? "bg-black"
+            ? "bg-tertiary"
             : "bg-transparent"
         }`}
       >
@@ -82,9 +83,6 @@ const Navbar = () => {
                   <Link to="/">Inicio</Link>
                 </li>
                 <li>
-                  <a href="#nosotros">Nosotros</a>
-                </li>
-                <li>
                   <a href="#proyectos">Proyectos</a>
                 </li>
                 <li>
@@ -97,7 +95,7 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <Link
-                  to="/profile"
+                  to="/feed"
                   className="flex items-center gap-3 text-white hover:text-blue-300 transition-colors"
                 >
                   <Avatar
@@ -176,15 +174,6 @@ const Navbar = () => {
                 >
                   Inicio
                 </Link>
-              </li>
-              <li>
-                <a
-                  href="#nosotros"
-                  className="text-gray-800 hover:text-blue-600 text-lg font-medium block py-2 transition-colors duration-200"
-                  onClick={closeMenu}
-                >
-                  Nosotros
-                </a>
               </li>
               <li>
                 <a

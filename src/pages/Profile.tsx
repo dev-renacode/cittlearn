@@ -5,6 +5,7 @@ import { useAvatarUpdate } from "../hooks/useAvatarUpdate";
 import Avatar from "../components/ui/Avatar";
 import Button from "../components/ui/Button";
 import Card from "../components/ui/Card";
+import TrackBadge from "../components/ui/TrackBadge";
 
 const Profile = () => {
   const { user, updateUser, error, clearError } = useAuth();
@@ -309,35 +310,10 @@ const Profile = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Rol
+                    Track de Especialización
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg border">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        user?.role === "admin"
-                          ? "bg-purple-100 text-purple-800"
-                          : "bg-blue-100 text-blue-800"
-                      }`}
-                    >
-                      {user?.role === "admin" ? "Administrador" : "Usuario"}
-                    </span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Estado de la Cuenta
-                  </label>
-                  <div className="p-3 bg-gray-50 rounded-lg border">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        user?.isActive
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {user?.isActive ? "Activa" : "Inactiva"}
-                    </span>
+                    <TrackBadge track={user?.track} size="lg" />
                   </div>
                 </div>
 
@@ -347,7 +323,7 @@ const Profile = () => {
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg border">
                     <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
                         user?.emailVerified
                           ? "bg-green-100 text-green-800"
                           : "bg-yellow-100 text-yellow-800"
@@ -355,17 +331,6 @@ const Profile = () => {
                     >
                       {user?.emailVerified ? "Verificado" : "Pendiente"}
                     </span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Último Acceso
-                  </label>
-                  <div className="p-3 bg-gray-50 rounded-lg border">
-                    <p className="text-gray-900">
-                      {user?.lastLogin ? formatDate(user.lastLogin) : "Nunca"}
-                    </p>
                   </div>
                 </div>
               </div>

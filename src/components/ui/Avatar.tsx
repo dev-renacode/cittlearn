@@ -4,7 +4,7 @@ import { getAvatarUrl, isDefaultAvatar } from "../../constants/avatar";
 interface AvatarProps {
   src?: string;
   alt?: string;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
   fallback?: string;
   className?: string;
   onClick?: () => void;
@@ -27,6 +27,7 @@ const Avatar: React.FC<AvatarProps> = ({
     md: "w-10 h-10 text-base",
     lg: "w-12 h-12 text-lg",
     xl: "w-16 h-16 text-xl",
+    xxl: "w-30 h-30 text-2xl",
   };
 
   const getInitials = (name: string): string => {
