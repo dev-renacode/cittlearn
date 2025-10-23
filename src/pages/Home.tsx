@@ -1,7 +1,5 @@
-import Hero from "../components/home/Hero";
-import SobreCittLearn from "../components/home/SobreCittLearn";
-import Proyectos from "../components/projects/Proyectos";
-import Tracks from "../components/home/Tracks";
+import { Hero, SobreCittLearn, Tracks } from "../components/domain/home";
+import { Proyectos } from "../components/domain/projects";
 
 const Home = () => {
   return (

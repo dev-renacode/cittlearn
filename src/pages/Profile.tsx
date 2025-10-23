@@ -2,10 +2,7 @@ import React, { useState, useRef } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { authService } from "../services/api";
 import { useAvatarUpdate } from "../hooks/useAvatarUpdate";
-import Avatar from "../components/ui/Avatar";
-import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
-import TrackBadge from "../components/ui/TrackBadge";
+import { Avatar, Button, Card, TrackBadge } from "../components/common/ui";
 
 const Profile = () => {
   const { user, updateUser, error, clearError } = useAuth();

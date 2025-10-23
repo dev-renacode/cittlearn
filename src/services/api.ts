@@ -23,13 +23,17 @@ export interface Track {
 export interface User {
   _id: string;
   name: string;
+  username: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  role: "user" | "admin";
+  role: "user" | "admin" | "capitan" | "captain";
   isActive: boolean;
   emailVerified: boolean;
   lastLogin: string | null;
   avatar?: string;
-  track?: Track;
+  track?: Track | string;
+  captainOf?: string | string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -56,7 +60,7 @@ export interface RefreshTokenResponse {
   refreshToken: string;
 }
 
-// Configuración base de axios
+// Axios config
 const createApiInstance = (): AxiosInstance => {
   const api = axios.create({
     baseURL: API_BASE_URL,
@@ -274,6 +278,131 @@ export const tokenUtils = {
   // Limpiar usuario
   clearUser: () => {
     localStorage.removeItem("user");
+  },
+};
+
+// Servicios de administración
+export const adminService = {
+  // Obtener todos los usuarios (Admin)
+  getUsers: async (params: {
+    page?: number;
+    limit?: number;
+    role?: string;
+    track?: string;
+    search?: string;
+  }): Promise<
+    ApiResponse<{
+      users: User[];
+      pagination: {
+        total: number;
+        page: number;
+        limit: number;
+        pages: number;
+      };
+    }>
+  > => {
+    const queryParams = new URLSearchParams();
+    if (params.page) queryParams.append("page", params.page.toString());
+    if (params.limit) queryParams.append("limit", params.limit.toString());
+    if (params.role && params.role !== "todos")
+      queryParams.append("role", params.role);
+    if (params.track && params.track !== "todos")
+      queryParams.append("track", params.track);
+    if (params.search) queryParams.append("search", params.search);
+
+    const response = await api.get(
+      `/api/admin/users?${queryParams.toString()}`
+    );
+    return response.data;
+  },
+
+  // Actualizar usuario (Admin)
+  updateUser: async (
+    userId: string,
+    userData: {
+      name?: string;
+      email?: string;
+      password?: string;
+      track?: string;
+      role?: string;
+      isActive?: boolean;
+    }
+  ): Promise<ApiResponse<{ user: User }>> => {
+    const response = await api.put(`/api/admin/users/${userId}`, userData);
+    return response.data;
+  },
+
+  // Eliminar usuario (Admin)
+  deleteUser: async (userId: string): Promise<ApiResponse> => {
+    const response = await api.delete(`/api/admin/users/${userId}`);
+    return response.data;
+  },
+
+  // Obtener estadísticas (Admin)
+  getStats: async (): Promise<
+    ApiResponse<{
+      totalUsers: number;
+      totalAdmins: number;
+      totalCaptains: number;
+      totalTracks: number;
+      usersByTrack: Array<{
+        _id: string;
+        trackName: string;
+        count: number;
+      }>;
+    }>
+  > => {
+    const response = await api.get("/api/admin/stats");
+    return response.data;
+  },
+};
+
+// Servicios de capitán
+export const captainService = {
+  // Obtener usuarios del track (Capitán)
+  getUsers: async (params: {
+    page?: number;
+    limit?: number;
+    role?: string;
+    search?: string;
+  }): Promise<
+    ApiResponse<{
+      users: User[];
+      pagination: {
+        total: number;
+        page: number;
+        limit: number;
+        pages: number;
+      };
+    }>
+  > => {
+    const queryParams = new URLSearchParams();
+    if (params.page) queryParams.append("page", params.page.toString());
+    if (params.limit) queryParams.append("limit", params.limit.toString());
+    if (params.role && params.role !== "todos")
+      queryParams.append("role", params.role);
+    if (params.search) queryParams.append("search", params.search);
+
+    const response = await api.get(
+      `/api/captain/users?${queryParams.toString()}`
+    );
+    return response.data;
+  },
+
+  // Actualizar usuario de su track (Capitán)
+  updateUser: async (
+    userId: string,
+    userData: {
+      name?: string;
+      email?: string;
+      password?: string;
+      track?: string;
+      role?: string;
+      isActive?: boolean;
+    }
+  ): Promise<ApiResponse<{ user: User }>> => {
+    const response = await api.put(`/api/captain/users/${userId}`, userData);
+    return response.data;
   },
 };
 

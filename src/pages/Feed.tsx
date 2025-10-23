@@ -1,10 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Banner from "../components/feed/Banner";
-import FeedNavbar from "../components/feed/FeedNavbar";
-import UserInfo from "../components/feed/UserInfo";
-import PostsSection from "../components/feed/PostsSection";
-import MediaSection from "../components/feed/MediaSection";
-import LikesSection from "../components/feed/LikesSection";
+import {
+  Banner,
+  FeedNavbar,
+  UserInfo,
+  PostsSection,
+  MediaSection,
+  LikesSection,
+} from "../components/domain/feed";
 
 const Feed = () => {
   return (

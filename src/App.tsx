@@ -1,12 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import Feed from "./pages/Feed";
+import { ProtectedRoute } from "./guards";
+import { Layout } from "./components/common/layout";
+import { Home, Profile, Feed } from "./pages";
+import { Login, Register } from "./components/domain/auth";
+import { DashboardLayout } from "./components/domain/dashboard";
+import {
+  DashboardHome,
+  DashboardUsers,
+  DashboardPosts,
+} from "./pages/dashboard";
 
 function App() {
   return (
@@ -62,6 +65,20 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* Dashboard (Admin y Capitán) */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute requireAuth={true}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<DashboardHome />} />
+            <Route path="usuarios" element={<DashboardUsers />} />
+            <Route path="posts" element={<DashboardPosts />} />
+          </Route>
 
           {/* Ruta 404 - Página no encontrada */}
           <Route
