@@ -678,7 +678,7 @@ const DashboardUsers = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder="Buscar por nombre, email o username..."
+              placeholder="Buscar por nombre o email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -749,7 +749,7 @@ const DashboardUsers = () => {
             )}
 
             {/* Clear Filters */}
-            <div className="flex items-end">
+            <div className="flex justify-end items-end">
               <button
                 onClick={() => {
                   setSearchTerm("");
@@ -757,7 +757,7 @@ const DashboardUsers = () => {
                   setSelectedTrack("todos");
                   setCurrentPage(1);
                 }}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                className="px-6 py-2 bg-red-100 text-red-700 border border-red-200 rounded-lg hover:bg-red-200 hover:text-red-800 transition-colors font-medium"
               >
                 Limpiar Filtros
               </button>
@@ -855,9 +855,6 @@ const DashboardUsers = () => {
                                 {user.firstName && user.lastName
                                   ? `${user.firstName} ${user.lastName}`
                                   : user.name || "Sin nombre"}
-                              </div>
-                              <div className="text-sm text-gray-500">
-                                @{user.username || "sin-username"}
                               </div>
                             </div>
                           </div>

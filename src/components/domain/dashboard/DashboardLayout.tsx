@@ -179,9 +179,6 @@ const DashboardLayout = () => {
                 <p className="font-semibold text-white truncate">
                   {user?.name}
                 </p>
-                <p className="text-sm text-gray-400 truncate">
-                  @{user?.email?.split("@")[0]}
-                </p>
                 <div className="mt-1">
                   {isAdmin && (
                     <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 border border-red-300">
