@@ -6,13 +6,15 @@
 
 ## 📋 Descripción del Proyecto
 
-CITT Learn es una plataforma web fullstack desarrollada para fomentar la colaboración entre estudiantes del CITT y apoyar su proceso de aprendizaje hacia el mundo profesional. La aplicación integra diferentes tracks tecnológicos, sistema de autenticación robusto, gestión de perfiles y funcionalidades de colaboración.
+CITT Learn es una plataforma web fullstack desarrollada para fomentar la colaboración entre estudiantes del CITT y apoyar su proceso de aprendizaje hacia el mundo profesional. La aplicación integra diferentes tracks tecnológicos, sistema de autenticación robusto, gestión de perfiles, sistema de posts colaborativo y panel de administración completo.
 
 ## 🎯 Objetivos
 
 - Crear una plataforma accesible y responsiva para la comunidad CITT
-- Implementar un sistema de autenticación seguro con correo institucional DuocUC
+- Implementar un sistema de autenticación seguro con gestión de roles
 - Facilitar la colaboración entre estudiantes de diferentes tracks
+- Proporcionar un sistema de posts y interacciones sociales
+- Implementar un panel de administración para gestión de usuarios
 - Proporcionar recursos y herramientas de aprendizaje especializadas
 
 ## 🛠️ Stack Tecnológico
@@ -88,61 +90,86 @@ http://localhost:5173
 
 ```
 src/
-├── components/           # Componentes reutilizables
-│   ├── auth/            # Componentes de autenticación
-│   │   ├── Login.tsx    # Página de inicio de sesión
-│   │   └── Register.tsx # Página de registro
-│   ├── home/            # Componentes de la página principal
-│   │   ├── Hero.tsx     # Sección hero
-│   │   ├── SobreCittLearn.tsx # Información sobre CITT
-│   │   └── Tracks.tsx   # Sección de tracks disponibles
-│   ├── layout/          # Componentes de layout
-│   │   ├── Footer.tsx   # Pie de página
-│   │   ├── Layout.tsx   # Layout principal
-│   │   └── Navbar.tsx   # Barra de navegación
-│   ├── projects/        # Componentes de proyectos
-│   │   ├── ProyectoItem.tsx # Item individual de proyecto
-│   │   └── Proyectos.tsx    # Lista de proyectos
-│   ├── tracks/          # Componentes de tracks
-│   │   └── TrackItem.tsx    # Item individual de track
-│   ├── ui/              # Componentes de UI
-│   │   ├── Avatar.tsx   # Componente de avatar
-│   │   ├── Button.tsx   # Componente de botón
-│   │   └── Card.tsx     # Componente de tarjeta
-│   └── ProtectedRoute.tsx # Componente de ruta protegida
-├── config/              # Configuración
-│   └── env.ts          # Variables de entorno
-├── constants/           # Constantes de la aplicación
-│   └── avatar.ts       # Constantes para avatares
-├── context/            # Contextos de React
-│   └── AuthContext.tsx # Contexto de autenticación
-├── hooks/              # Custom hooks
-│   ├── useAuth.ts      # Hook de autenticación
-│   └── useAvatarUpdate.ts # Hook para actualización de avatares
-├── pages/              # Páginas principales
-│   ├── Home.tsx        # Página principal
-│   └── Profile.tsx     # Página de perfil de usuario
-├── services/           # Servicios y APIs
-│   └── api.ts          # Cliente API y utilidades
-└── assets/             # Recursos estáticos
-    ├── icons/          # Iconos
-    └── images/         # Imágenes
+├── components/
+│   ├── common/              # Componentes reutilizables
+│   │   ├── ui/              # Componentes de interfaz
+│   │   │   ├── Avatar.tsx   # Avatar con fallback
+│   │   │   ├── Button.tsx   # Botón reutilizable
+│   │   │   ├── Card.tsx     # Tarjeta contenedora
+│   │   │   ├── TrackBadge.tsx # Badge de track
+│   │   │   └── TrackIcons.tsx # Iconos SVG de tracks
+│   │   ├── forms/           # Componentes de formularios
+│   │   │   └── TrackSelector.tsx # Selector de tracks
+│   │   └── layout/          # Componentes de layout
+│   │       ├── Footer.tsx   # Pie de página
+│   │       ├── Layout.tsx   # Layout principal
+│   │       └── Navbar.tsx   # Barra de navegación
+│   └── domain/              # Componentes por dominio
+│       ├── auth/            # Autenticación
+│       │   ├── Login.tsx    # Página de login
+│       │   └── Register.tsx # Página de registro
+│       ├── dashboard/       # Panel de administración
+│       │   └── DashboardLayout.tsx # Layout del dashboard
+│       ├── feed/            # Sistema de posts
+│       │   ├── Banner.tsx   # Banner del feed
+│       │   ├── FeedNavbar.tsx # Navegación del feed
+│       │   ├── UserInfo.tsx # Información del usuario
+│       │   ├── PostsSection.tsx # Sección de posts
+│       │   ├── MediaSection.tsx # Sección multimedia
+│       │   └── LikesSection.tsx # Sección de likes
+│       ├── home/            # Página principal
+│       │   ├── Hero.tsx     # Sección hero
+│       │   ├── SobreCittLearn.tsx # Información sobre CITT
+│       │   └── Tracks.tsx   # Sección de tracks
+│       ├── projects/        # Proyectos
+│       │   ├── ProyectoItem.tsx # Item de proyecto
+│       │   └── Proyectos.tsx # Lista de proyectos
+│       └── tracks/          # Tracks
+│           └── TrackItem.tsx # Item de track
+├── pages/                   # Páginas principales
+│   ├── dashboard/           # Páginas del dashboard
+│   │   ├── DashboardHome.tsx # Inicio del dashboard
+│   │   ├── DashboardUsers.tsx # Gestión de usuarios
+│   │   └── DashboardPosts.tsx # Gestión de posts
+│   ├── Feed.tsx            # Página del feed
+│   ├── Home.tsx            # Página principal
+│   └── Profile.tsx         # Página de perfil
+├── guards/                  # Protección de rutas
+│   └── ProtectedRoute.tsx  # Componente de ruta protegida
+├── hooks/                   # Custom hooks
+│   ├── useAuth.ts          # Hook de autenticación
+│   ├── useAvatarUpdate.ts  # Hook para avatares
+│   └── useTrackResolution.ts # Hook para resolución de tracks
+├── services/                # Servicios y APIs
+│   └── api.ts              # Cliente API completo
+├── context/                 # Contextos de React
+│   └── AuthContext.tsx     # Contexto de autenticación
+├── constants/               # Constantes
+│   ├── avatar.ts           # Constantes de avatares
+│   └── tracks.ts           # Constantes de tracks
+├── config/                  # Configuración
+│   └── env.ts              # Variables de entorno
+└── assets/                  # Recursos estáticos
+    ├── icons/
+    │   ├── tracks/         # Iconos de tracks (PNG)
+    │   └── ui/             # Iconos de interfaz (SVG)
+    └── images/             # Imágenes del proyecto
 ```
 
 ## ✨ Funcionalidades Implementadas
 
-### 🔐 Sistema de Autenticación _(En Fase de Prueba)_
+### 🔐 Sistema de Autenticación Completo
 
 - **Login** con email y contraseña
-- **Registro** con validación de formularios
+- **Registro** con selección de track
 - **Gestión de tokens** (access token y refresh token)
 - **Rutas protegidas** que requieren autenticación
 - **Logout** con limpieza de sesión
 - **Persistencia de sesión** en localStorage
+- **Sistema de roles** (user, captain, admin)
+- **Validación de formularios** en tiempo real
 
-> ⚠️ **Nota**: La autenticación actualmente está en fase de prueba. Faltan implementar funcionalidades como la selección de track del usuario y la verificación con correo institucional de DuocUC.
-
-### 👤 Gestión de Perfiles
+### 👤 Gestión de Perfiles Avanzada
 
 - **Página de perfil** completa del usuario
 - **Sistema de avatares** con subida de imágenes
@@ -150,21 +177,48 @@ src/
 - **Validación de archivos** (tipos y tamaño)
 - **Eliminación de avatares** con fallback a imagen por defecto
 - **Actualización en tiempo real** del avatar en toda la aplicación
+- **Información de track** del usuario
+- **Badges de roles** (Admin, Capitán)
 
-### 🎨 Interfaz de Usuario
+### 📱 Sistema de Posts Colaborativo
+
+- **Feed principal** con posts de la comunidad
+- **Creación de posts** con selección de track
+- **Sistema de likes** interactivo
+- **Filtrado por tracks** en el feed
+- **Información del autor** con avatar y rol
+- **Navegación del feed** intuitiva
+- **Sección multimedia** para contenido visual
+
+### 🎛️ Panel de Administración
+
+- **Dashboard completo** para administradores y capitanes
+- **Gestión de usuarios** con tabla completa
+- **Filtros avanzados** (rol, track, estado, búsqueda)
+- **Edición de usuarios** con modal interactivo
+- **Asignación de roles** (admin, captain, user)
+- **Gestión de tracks** para capitanes
+- **Estadísticas** del sistema
+- **Paginación** y búsqueda en tiempo real
+
+### 🎨 Interfaz de Usuario Moderna
 
 - **Diseño responsivo** con TailwindCSS
 - **Navegación intuitiva** con React Router
-- **Componentes reutilizables** (Button, Card, Avatar)
+- **Componentes reutilizables** (Button, Card, Avatar, TrackBadge)
 - **Estados de carga** y manejo de errores
 - **Animaciones suaves** y transiciones
 - **Navbar adaptativo** con efecto de scroll
+- **Iconos SVG personalizados** para cada track
+- **Sistema de colores** representativo por track
 
 ### 📱 Páginas Principales
 
 - **Home** - Página principal con información del CITT
-- **Login/Register** - Autenticación de usuarios
+- **Login/Register** - Autenticación completa de usuarios
 - **Profile** - Gestión de perfil y avatares
+- **Feed** - Sistema de posts colaborativo
+- **Dashboard** - Panel de administración completo
 - **Tracks** - Visualización de tracks disponibles (8 tracks implementados)
 
 ### 🔧 Tracks Disponibles
@@ -180,16 +234,42 @@ src/
 
 ## 🔌 Integración con Backend
 
-### Endpoints Utilizados _(Fase de Prueba)_
+### Endpoints Implementados
+
+#### Autenticación
 
 - `POST /api/auth/login` - Inicio de sesión
-- `POST /api/auth/register` - Registro de usuario _(sin validación de track)_
+- `POST /api/auth/register` - Registro de usuario con track
 - `POST /api/auth/logout` - Cerrar sesión
 - `GET /api/auth/profile` - Obtener perfil del usuario
 - `POST /api/auth/avatar` - Subir avatar
 - `DELETE /api/auth/avatar` - Eliminar avatar
+- `GET /api/auth/tracks` - Obtener tracks disponibles
 
-> 📝 **Pendientes**: Endpoints para verificación de correo institucional y asignación de tracks
+#### Posts
+
+- `GET /api/posts` - Obtener posts del feed
+- `POST /api/posts` - Crear nuevo post
+- `DELETE /api/posts/:id` - Eliminar post
+- `POST /api/posts/:id/like` - Dar like a un post
+
+#### Administración
+
+- `GET /api/admin/users` - Obtener usuarios (admin)
+- `PUT /api/admin/users/:id` - Actualizar usuario (admin)
+- `DELETE /api/admin/users/:id` - Eliminar usuario (admin)
+- `GET /api/admin/stats` - Obtener estadísticas (admin)
+
+#### Capitanes
+
+- `GET /api/captain/users` - Obtener usuarios del track (capitán)
+- `PUT /api/captain/users/:id` - Actualizar usuario del track (capitán)
+
+### Sistema de Roles
+
+- **Admin**: Acceso completo al sistema, gestión de usuarios y roles
+- **Captain**: Gestión de usuarios de su track específico
+- **User**: Usuario normal con acceso al feed y perfil
 
 ### Configuración de Proxy
 
@@ -266,41 +346,69 @@ VITE_APP_VERSION=1.0.0
 ### Sistema de Autenticación
 
 - **Sin validación de correo institucional**: Actualmente acepta cualquier email
-- **Sin selección de track**: Los usuarios no pueden elegir su track durante el registro
 - **Sin verificación de dominio**: No se valida que el email sea de @duocuc.cl
 - **Registro abierto**: Cualquier usuario puede registrarse sin restricciones
 
 > 🎯 **Objetivo**: Implementar autenticación completa con validación institucional y asignación de tracks.
+
+## 🏗️ Arquitectura del Proyecto
+
+### Patrón de Organización
+
+El proyecto utiliza un patrón híbrido que combina **Domain-Driven Design (DDD)** con **Feature-Based Organization**:
+
+- **`components/common/`**: Componentes reutilizables (UI, forms, layout)
+- **`components/domain/`**: Componentes organizados por dominio de negocio
+- **`pages/`**: Páginas principales organizadas por feature
+- **`guards/`**: Protección de rutas
+- **`hooks/`**: Custom hooks por funcionalidad
+- **`services/`**: Servicios de API por dominio
+- **`constants/`**: Constantes por categoría
+- **`types/`**: Tipos TypeScript por dominio
+
+### Beneficios de la Arquitectura
+
+- **Escalabilidad**: Fácil agregar nuevos dominios/features
+- **Mantenibilidad**: Código organizado y fácil de encontrar
+- **Reutilización**: Componentes comunes accesibles
+- **Separación de responsabilidades**: Cada carpeta tiene un propósito claro
 
 ## 📈 Estado Actual del Desarrollo
 
 ### ✅ Completado
 
 - [x] Configuración inicial del proyecto
-- [x] Sistema de autenticación básico _(en prueba)_
+- [x] Sistema de autenticación completo
 - [x] Gestión de perfiles y avatares
-- [x] Interfaz responsiva principal
+- [x] Sistema de roles (admin, captain, user)
+- [x] Sistema de posts colaborativo
+- [x] Panel de administración completo
+- [x] Interfaz responsiva moderna
 - [x] Navegación y enrutamiento
-- [x] Integración con backend
+- [x] Integración completa con backend
 - [x] Componentes reutilizables
 - [x] Manejo de estados globales
+- [x] Sistema de tracks con iconos personalizados
+- [x] Filtros y búsqueda avanzada
+- [x] Gestión de usuarios y roles
+- [x] Sistema de likes y interacciones
 
 ### 🚧 En Desarrollo
 
-- [ ] **Autenticación completa**
-  - [ ] Selección de track en el registro
-  - [ ] Verificación con correo institucional DuocUC
-  - [ ] Validación de dominio @duocuc.cl
-- [ ] Sistema de foros por track
-- [ ] Sistema de notificaciones
-- [ ] Panel de administración
+- [ ] **Sistema de notificaciones**
+- [ ] **Chat en tiempo real**
+- [ ] **Sistema de badges y logros**
+- [ ] **Integración con herramientas de desarrollo**
+- [ ] **API de integración con sistemas DuocUC**
 
 ### 📋 Próximas Funcionalidades
 
-- [ ] Chat en tiempo real
-- [ ] Sistema de badges y logros
-- [ ] Integración con herramientas de desarrollo
-- [ ] API de integración con sistemas DuocUC
+- [ ] Sistema de comentarios en posts
+- [ ] Notificaciones push
+- [ ] Sistema de seguimiento entre usuarios
+- [ ] Integración con GitHub/GitLab
+- [ ] Sistema de proyectos colaborativos
+- [ ] Dashboard de estadísticas avanzadas
 
 ## 👨‍💻 Desarrollador
 
